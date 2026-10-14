@@ -1,5 +1,6 @@
 import type { CNPValidationResult } from './types.js';
 import { COUNTIES } from './data/counties.js';
+import { invalid } from './messages.js';
 
 const CNP_WEIGHTS = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
 
@@ -16,7 +17,7 @@ export function validateCNP(cnp: string): CNPValidationResult {
   const cleaned = cnp.replace(/\s/g, '');
 
   if (!/^\d{13}$/.test(cleaned)) {
-    return { valid: false, error: 'CNP must contain exactly 13 digits' };
+    return invalid('cnp.length');
   }
 
   const digits = cleaned.split('').map(Number);
@@ -28,7 +29,7 @@ export function validateCNP(cnp: string): CNPValidationResult {
   const checksum = digits[12];
 
   if (sex < 1 || sex > 9) {
-    return { valid: false, error: 'Invalid sex digit' };
+    return invalid('cnp.sex');
   }
 
   let fullYear: number;
@@ -44,22 +45,22 @@ export function validateCNP(cnp: string): CNPValidationResult {
   }
 
   if (month < 1 || month > 12) {
-    return { valid: false, error: 'Invalid month' };
+    return invalid('cnp.month');
   }
 
   const daysInMonth = new Date(fullYear, month, 0).getDate();
   if (day < 1 || day > daysInMonth) {
-    return { valid: false, error: 'Invalid day' };
+    return invalid('cnp.day');
   }
 
   const birthDate = new Date(fullYear, month - 1, day);
   if (birthDate.getTime() > Date.now()) {
-    return { valid: false, error: 'Birth date cannot be in the future' };
+    return invalid('cnp.future');
   }
 
   const countyData = COUNTIES.find((c) => c.code === countyCode);
   if (!countyData) {
-    return { valid: false, error: 'Invalid county code' };
+    return invalid('cnp.county');
   }
 
   let calculatedChecksum = 0;
@@ -72,7 +73,7 @@ export function validateCNP(cnp: string): CNPValidationResult {
   }
 
   if (calculatedChecksum !== checksum) {
-    return { valid: false, error: 'Invalid checksum' };
+    return invalid('cnp.checksum');
   }
 
   return {

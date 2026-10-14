@@ -7,15 +7,7 @@ import IDCardInput from './components/IDCardInput.vue';
 import CountySelect from './components/CountySelect.vue';
 import LocalitySelect from './components/LocalitySelect.vue';
 
-export {
-  CNPInput,
-  CUIInput,
-  IBANInput,
-  PhoneInput,
-  IDCardInput,
-  CountySelect,
-  LocalitySelect,
-};
+export { CNPInput, CUIInput, IBANInput, PhoneInput, IDCardInput, CountySelect, LocalitySelect };
 
 export { useValidation } from './composables/useValidation.js';
 

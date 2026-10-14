@@ -28,13 +28,13 @@ carpat locality iasi --county 22
 
 ### Options
 
-| Flag | Description |
-| --- | --- |
-| `--json` | JSON output |
-| `--format` | Also print the formatted value when valid |
-| `--county <code>` | Filter `locality` by județ code |
-| `-h, --help` | Help |
-| `-v, --version` | Version |
+| Flag              | Description                               |
+| ----------------- | ----------------------------------------- |
+| `--json`          | JSON output                               |
+| `--format`        | Also print the formatted value when valid |
+| `--county <code>` | Filter `locality` by județ code           |
+| `-h, --help`      | Help                                      |
+| `-v, --version`   | Version                                   |
 
 ### Exit codes
 

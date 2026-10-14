@@ -64,11 +64,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import {
-  getLocalitiesByCounty,
-  getLocalityBySiruta,
-  searchLocalities,
-} from '@carpat/core/data';
+import { getLocalitiesByCounty, getLocalityBySiruta, searchLocalities } from '@carpat/core/data';
 import type { Locality } from '@carpat/core';
 
 export interface LocalitySelectProps {
@@ -111,9 +107,7 @@ const uid = Math.random().toString(36).slice(2, 9);
 const inputId = `locality-select-${uid}`;
 const listboxId = `locality-list-${uid}`;
 
-const isDisabled = computed(
-  () => props.disabled || (props.requireCounty && !props.countyCode)
-);
+const isDisabled = computed(() => props.disabled || (props.requireCounty && !props.countyCode));
 
 const effectivePlaceholder = computed(() => {
   if (props.requireCounty && !props.countyCode) return 'Selectează mai întâi județul';

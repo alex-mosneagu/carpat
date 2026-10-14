@@ -24,7 +24,8 @@ Every validator returns a `ValidationResult`:
 ```typescript
 interface ValidationResult {
   valid: boolean;
-  error?: string; // Present if valid is false
+  error?: string; // Human-readable message (localizable)
+  errorCode?: ValidationErrorCode; // Stable key for i18n
 }
 ```
 
@@ -40,6 +41,39 @@ interface CNPValidationResult extends ValidationResult {
   };
 }
 ```
+
+## Custom error messages
+
+Default messages are English. Override them once at app startup with `setMessages` — UI components pick up `result.error` automatically:
+
+```typescript
+import { setMessages, resetMessages, validateCNP } from '@carpat/core';
+
+setMessages({
+  'cnp.length': 'CNP-ul trebuie să aibă exact 13 cifre',
+  'cnp.checksum': 'Checksum CNP invalid',
+  'iban.format': 'Format IBAN invalid',
+});
+
+validateCNP('123').error;
+// "CNP-ul trebuie să aibă exact 13 cifre"
+
+validateCNP('123').errorCode;
+// "cnp.length"
+```
+
+Prefer mapping on `errorCode` in your own i18n layer if you already have a translation system:
+
+```typescript
+const t = {
+  'cnp.length': 'CNP-ul trebuie să aibă exact 13 cifre',
+} as const;
+
+const result = validateCNP(value);
+const message = result.errorCode ? (t[result.errorCode] ?? result.error) : undefined;
+```
+
+Use `resetMessages()` to restore the built-in English catalog. See the [Core API](/api/core#messages) for the full list of codes.
 
 ## Formatters
 

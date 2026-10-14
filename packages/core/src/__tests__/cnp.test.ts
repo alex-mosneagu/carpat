@@ -24,6 +24,7 @@ describe('CNP Validation', () => {
   it('rejects CNP with invalid length', () => {
     const result = validateCNP('123456789');
     expect(result.valid).toBe(false);
+    expect(result.errorCode).toBe('cnp.length');
     expect(result.error).toContain('13 digits');
   });
 

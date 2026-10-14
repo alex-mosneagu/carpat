@@ -51,8 +51,7 @@ export const CountySelect: React.FC<CountySelectProps> = ({
   const listboxId = useId();
 
   const selectedLabel = labelFor(localValue);
-  const isFiltering =
-    searchQuery.trim().length > 0 && searchQuery.trim() !== selectedLabel;
+  const isFiltering = searchQuery.trim().length > 0 && searchQuery.trim() !== selectedLabel;
 
   const options = useMemo(
     () =>

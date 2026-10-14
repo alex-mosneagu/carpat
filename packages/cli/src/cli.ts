@@ -257,7 +257,8 @@ export function run(argv: string[]): ExitCode {
         });
       }
       const lines = ['valid'];
-      if (result.bankCode) lines.push(`bank: ${result.bankCode}${result.bankName ? ` — ${result.bankName}` : ''}`);
+      if (result.bankCode)
+        lines.push(`bank: ${result.bankCode}${result.bankName ? ` — ${result.bankName}` : ''}`);
       if (options.format && result.formatted) lines.push(`formatted: ${result.formatted}`);
       printHuman(lines);
       return 0;
@@ -277,7 +278,11 @@ export function run(argv: string[]): ExitCode {
       }
       const formatted = formatPhone(value);
       if (options.json) {
-        return okJson('phone', { value, formatted: result.formatted ?? formatted, type: result.type });
+        return okJson('phone', {
+          value,
+          formatted: result.formatted ?? formatted,
+          type: result.type,
+        });
       }
       const lines = ['valid', `type: ${result.type}`];
       if (options.format) lines.push(`formatted: ${result.formatted ?? formatted}`);
@@ -360,8 +365,7 @@ export function run(argv: string[]): ExitCode {
         process.stderr.write('Usage: carpat county <query>\n');
         return 2;
       }
-      const exact =
-        getCountyByCode(query) || getCountyByAuto(query) || getCountyByName(query);
+      const exact = getCountyByCode(query) || getCountyByAuto(query) || getCountyByName(query);
       const folded = fold(query);
       const matches = exact
         ? [exact]
@@ -379,9 +383,7 @@ export function run(argv: string[]): ExitCode {
       if (options.json) {
         return okJson('county', { query, matches });
       }
-      printHuman(
-        matches.map((c) => `${c.code}  ${c.auto.padEnd(3)}  ${c.name}`)
-      );
+      printHuman(matches.map((c) => `${c.code}  ${c.auto.padEnd(3)}  ${c.name}`));
       return 0;
     }
 
@@ -404,7 +406,8 @@ export function run(argv: string[]): ExitCode {
       }
       printHuman(
         matches.map(
-          (l) => `${l.siruta}  ${l.countyCode}  ${l.name} (${l.type})${l.postalCode ? `  ${l.postalCode}` : ''}`
+          (l) =>
+            `${l.siruta}  ${l.countyCode}  ${l.name} (${l.type})${l.postalCode ? `  ${l.postalCode}` : ''}`
         )
       );
       return 0;
@@ -415,7 +418,9 @@ export function run(argv: string[]): ExitCode {
       const type = args[0]?.toLowerCase();
       const value = args[1];
       if (!type || !value) {
-        process.stderr.write('Usage: carpat format <cnp|cui|iban|phone|postal|id> <value> [number]\n');
+        process.stderr.write(
+          'Usage: carpat format <cnp|cui|iban|phone|postal|id> <value> [number]\n'
+        );
         return 2;
       }
       return run([type, ...(type === 'id' ? args.slice(1) : [value]), '--format']);
