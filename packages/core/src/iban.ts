@@ -1,17 +1,18 @@
 import type { IBANValidationResult } from './types.js';
 import { BANKS } from './data/banks.js';
+import { invalid } from './messages.js';
 
 export function validateIBAN(iban: string): IBANValidationResult {
   const cleaned = iban.toUpperCase().replace(/\s/g, '');
 
   if (!/^[A-Z]{2}\d{2}[A-Z0-9]+$/.test(cleaned)) {
-    return { valid: false, error: 'Invalid IBAN format' };
+    return invalid('iban.format');
   }
 
   const countryCode = cleaned.slice(0, 2);
 
   if (countryCode === 'RO' && cleaned.length !== 24) {
-    return { valid: false, error: 'Romanian IBAN must be 24 characters' };
+    return invalid('iban.length');
   }
 
   const rearranged = cleaned.slice(4) + cleaned.slice(0, 4);
@@ -28,7 +29,7 @@ export function validateIBAN(iban: string): IBANValidationResult {
   const remainder = mod97(numericString);
 
   if (remainder !== 1) {
-    return { valid: false, error: 'Invalid IBAN checksum' };
+    return invalid('iban.checksum');
   }
 
   let bankCode: string | undefined;

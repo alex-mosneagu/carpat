@@ -116,7 +116,10 @@ watch(result, (r) => emit('validate', r.valid));
 
 const onSeriesInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  const value = target.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 2);
+  const value = target.value
+    .toUpperCase()
+    .replace(/[^A-Z]/g, '')
+    .slice(0, 2);
   seriesValue.value = value;
   emit('update:series', value);
 };

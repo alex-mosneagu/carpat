@@ -53,12 +53,7 @@ const locality = ref('');
         <h2>IBAN</h2>
         <p>Mod-97 check and Romanian bank lookup.</p>
       </header>
-      <IBANInput
-        v-model="iban"
-        label="IBAN"
-        :show-bank-info="true"
-        :auto-format="true"
-      />
+      <IBANInput v-model="iban" label="IBAN" :show-bank-info="true" :auto-format="true" />
       <p class="hint">
         Try <code>RO90RNCB0000000000001234</code> (BCR) or
         <code>RO36BTRL0130123456789012</code> (Transilvania).
@@ -70,12 +65,7 @@ const locality = ref('');
         <h2>Phone</h2>
         <p>Mobile and landline, with +40 normalization.</p>
       </header>
-      <PhoneInput
-        v-model="phone"
-        label="Telefon"
-        :show-type="true"
-        :auto-format="true"
-      />
+      <PhoneInput v-model="phone" label="Telefon" :show-type="true" :auto-format="true" />
       <p class="hint">Try <code>0712345678</code> or <code>0212345678</code>.</p>
     </section>
 

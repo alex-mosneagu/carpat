@@ -1,4 +1,5 @@
 import type { IDCardValidationResult } from './types.js';
+import { invalid } from './messages.js';
 
 /** Official / commonly issued Romanian CI series (județe, București, temporary). */
 export const ID_CARD_SERIES = [
@@ -65,11 +66,11 @@ export function validateIDCard(series: string, number: string): IDCardValidation
   const cleanedNumber = number.replace(/\s/g, '');
 
   if (!(ID_CARD_SERIES as readonly string[]).includes(cleanedSeries)) {
-    return { valid: false, error: 'Invalid ID card series' };
+    return invalid('id.series');
   }
 
   if (!/^\d{6}$/.test(cleanedNumber)) {
-    return { valid: false, error: 'ID card number must be 6 digits' };
+    return invalid('id.number');
   }
 
   return {

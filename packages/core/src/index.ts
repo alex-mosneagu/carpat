@@ -1,4 +1,5 @@
 export * from './types.js';
+export * from './messages.js';
 export * from './cnp.js';
 export * from './cui.js';
 export * from './iban.js';
