@@ -23,6 +23,20 @@ pnpm add @carpat/core
 
 ## Usage
 
+### Custom error messages
+
+```typescript
+import { setMessages, validateCNP } from '@carpat/core';
+
+setMessages({
+  'cnp.length': 'CNP-ul trebuie să aibă exact 13 cifre',
+});
+
+const result = validateCNP('123');
+result.errorCode; // 'cnp.length'
+result.error; // 'CNP-ul trebuie să aibă exact 13 cifre'
+```
+
 ### CNP Validation
 
 ```typescript

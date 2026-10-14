@@ -1,6 +1,29 @@
+export type ValidationErrorCode =
+  | 'cnp.length'
+  | 'cnp.sex'
+  | 'cnp.month'
+  | 'cnp.day'
+  | 'cnp.future'
+  | 'cnp.county'
+  | 'cnp.checksum'
+  | 'cui.digits'
+  | 'cui.length'
+  | 'cui.checksum'
+  | 'iban.format'
+  | 'iban.length'
+  | 'iban.checksum'
+  | 'phone.length'
+  | 'phone.prefix'
+  | 'postal.length'
+  | 'postal.sector'
+  | 'id.series'
+  | 'id.number';
+
 export interface ValidationResult {
   valid: boolean;
   error?: string;
+  /** Stable key for i18n; prefer this over matching `error` text. */
+  errorCode?: ValidationErrorCode;
 }
 
 export interface CNPValidationResult extends ValidationResult {

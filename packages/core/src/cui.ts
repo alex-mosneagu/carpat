@@ -1,4 +1,5 @@
 import type { CUIValidationResult } from './types.js';
+import { invalid } from './messages.js';
 
 const CUI_WEIGHTS = [7, 5, 3, 2, 1, 7, 5, 3, 2, 1];
 
@@ -11,12 +12,12 @@ export function validateCUI(cui: string): CUIValidationResult {
   }
 
   if (!/^\d+$/.test(cleaned)) {
-    return { valid: false, error: 'CUI must contain only digits (optionally prefixed with RO)' };
+    return invalid('cui.digits');
   }
 
   const numericCUI = cleaned;
   if (numericCUI.length < 2 || numericCUI.length > 10) {
-    return { valid: false, error: 'CUI must be between 2 and 10 digits' };
+    return invalid('cui.length');
   }
 
   const paddedCUI = numericCUI.padStart(10, '0');
@@ -34,7 +35,7 @@ export function validateCUI(cui: string): CUIValidationResult {
   }
 
   if (calculatedChecksum !== checksum) {
-    return { valid: false, error: 'Invalid checksum' };
+    return invalid('cui.checksum');
   }
 
   return {

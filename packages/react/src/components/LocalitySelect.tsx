@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useMemo, useId, useRef } from 'react';
-import {
-  getLocalitiesByCounty,
-  getLocalityBySiruta,
-  searchLocalities,
-} from '@carpat/core/data';
+import { getLocalitiesByCounty, getLocalityBySiruta, searchLocalities } from '@carpat/core/data';
 import type { Locality } from '@carpat/core';
 
 export interface LocalitySelectProps {
@@ -57,8 +53,7 @@ export const LocalitySelect: React.FC<LocalitySelectProps> = ({
     requireCounty && !countyCode ? 'Selectează mai întâi județul' : placeholder;
 
   const selectedLabel = labelFor(localValue);
-  const isFiltering =
-    searchQuery.trim().length > 0 && searchQuery.trim() !== selectedLabel;
+  const isFiltering = searchQuery.trim().length > 0 && searchQuery.trim() !== selectedLabel;
 
   const options = useMemo(() => {
     if (!countyCode && requireCounty) return [];

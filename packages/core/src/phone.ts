@@ -1,4 +1,5 @@
 import type { PhoneValidationResult } from './types.js';
+import { invalid } from './messages.js';
 
 const MOBILE_PREFIXES = ['07'];
 const LANDLINE_PREFIXES = ['02', '03'];
@@ -13,7 +14,7 @@ export function validatePhone(phone: string): PhoneValidationResult {
   }
 
   if (!/^0\d{9}$/.test(cleaned)) {
-    return { valid: false, error: 'Phone number must be 10 digits starting with 0' };
+    return invalid('phone.length');
   }
 
   const prefix = cleaned.slice(0, 2);
@@ -24,7 +25,7 @@ export function validatePhone(phone: string): PhoneValidationResult {
   } else if (LANDLINE_PREFIXES.some((p) => prefix.startsWith(p))) {
     type = 'landline';
   } else {
-    return { valid: false, error: 'Invalid phone prefix' };
+    return invalid('phone.prefix');
   }
 
   return {

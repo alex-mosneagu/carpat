@@ -29,35 +29,35 @@ The binary name is `carpat`.
 
 ## Commands
 
-| Command | Description |
-| --- | --- |
-| `carpat cnp <value>` | Validate CNP |
-| `carpat cui <value>` | Validate CUI/CIF |
-| `carpat iban <value>` | Validate IBAN |
-| `carpat phone <value>` | Validate phone number |
-| `carpat postal <value>` | Validate postal code |
-| `carpat id <series> <number>` | Validate ID card (CI) |
-| `carpat address <text...>` | Normalize and parse address |
-| `carpat county <query>` | Search counties (name, auto, code) |
-| `carpat locality <query>` | Search localities |
+| Command                       | Description                        |
+| ----------------------------- | ---------------------------------- |
+| `carpat cnp <value>`          | Validate CNP                       |
+| `carpat cui <value>`          | Validate CUI/CIF                   |
+| `carpat iban <value>`         | Validate IBAN                      |
+| `carpat phone <value>`        | Validate phone number              |
+| `carpat postal <value>`       | Validate postal code               |
+| `carpat id <series> <number>` | Validate ID card (CI)              |
+| `carpat address <text...>`    | Normalize and parse address        |
+| `carpat county <query>`       | Search counties (name, auto, code) |
+| `carpat locality <query>`     | Search localities                  |
 
 ## Options
 
-| Flag | Description |
-| --- | --- |
-| `--json` | Machine-readable JSON output |
-| `--format` | Also print the formatted value when valid |
-| `--county <code>` | Filter `locality` by județ code |
-| `-h, --help` | Show help |
-| `-v, --version` | Show version (`0.1.1`) |
+| Flag              | Description                               |
+| ----------------- | ----------------------------------------- |
+| `--json`          | Machine-readable JSON output              |
+| `--format`        | Also print the formatted value when valid |
+| `--county <code>` | Filter `locality` by județ code           |
+| `-h, --help`      | Show help                                 |
+| `-v, --version`   | Show version (`0.1.1`)                    |
 
 ## Exit codes
 
-| Code | Meaning |
-| --- | --- |
-| `0` | Valid / success |
-| `1` | Invalid / no matches |
-| `2` | Usage error |
+| Code | Meaning              |
+| ---- | -------------------- |
+| `0`  | Valid / success      |
+| `1`  | Invalid / no matches |
+| `2`  | Usage error          |
 
 ## Examples
 

@@ -1,16 +1,17 @@
 import type { PostalCodeValidationResult } from './types.js';
+import { invalid } from './messages.js';
 
 export function validatePostalCode(code: string): PostalCodeValidationResult {
   const cleaned = code.replace(/\s/g, '');
 
   if (!/^\d{6}$/.test(cleaned)) {
-    return { valid: false, error: 'Postal code must be 6 digits' };
+    return invalid('postal.length');
   }
 
   const sector = parseInt(cleaned.slice(0, 1));
 
   if (sector < 0 || sector > 9) {
-    return { valid: false, error: 'Invalid postal code sector' };
+    return invalid('postal.sector');
   }
 
   return {

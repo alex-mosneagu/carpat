@@ -92,7 +92,10 @@ export const IDCardInput: React.FC<IDCardInputProps> = ({
             autoComplete="off"
             spellCheck={false}
             onChange={(e) => {
-              const next = e.target.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 2);
+              const next = e.target.value
+                .toUpperCase()
+                .replace(/[^A-Z]/g, '')
+                .slice(0, 2);
               setSeriesValue(next);
               onSeriesChange?.(next);
             }}

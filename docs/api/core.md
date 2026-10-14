@@ -155,6 +155,45 @@ interface IDCardValidationResult extends ValidationResult {
 
 **Number format:** 6 digits
 
+## Messages
+
+Customize validation error text globally. Components that show `result.error` pick up overrides automatically.
+
+```typescript
+import { setMessages, resetMessages, getMessages, defaultMessages } from '@carpat/core';
+
+setMessages({
+  'cnp.length': 'CNP-ul trebuie să aibă exact 13 cifre',
+  'iban.checksum': 'Checksum IBAN invalid',
+});
+
+resetMessages(); // restore English defaults
+```
+
+Every failed validation also sets `errorCode` (stable) and `error` (current message for that code).
+
+| Code            | Default message                                            |
+| --------------- | ---------------------------------------------------------- |
+| `cnp.length`    | CNP must contain exactly 13 digits                         |
+| `cnp.sex`       | Invalid sex digit                                          |
+| `cnp.month`     | Invalid month                                              |
+| `cnp.day`       | Invalid day                                                |
+| `cnp.future`    | Birth date cannot be in the future                         |
+| `cnp.county`    | Invalid county code                                        |
+| `cnp.checksum`  | Invalid checksum                                           |
+| `cui.digits`    | CUI must contain only digits (optionally prefixed with RO) |
+| `cui.length`    | CUI must be between 2 and 10 digits                        |
+| `cui.checksum`  | Invalid checksum                                           |
+| `iban.format`   | Invalid IBAN format                                        |
+| `iban.length`   | Romanian IBAN must be 24 characters                        |
+| `iban.checksum` | Invalid IBAN checksum                                      |
+| `phone.length`  | Phone number must be 10 digits starting with 0             |
+| `phone.prefix`  | Invalid phone prefix                                       |
+| `postal.length` | Postal code must be 6 digits                               |
+| `postal.sector` | Invalid postal code sector                                 |
+| `id.series`     | Invalid ID card series                                     |
+| `id.number`     | ID card number must be 6 digits                            |
+
 ## Formatters
 
 ### formatCNP
@@ -301,6 +340,7 @@ All types are exported from the main entry:
 
 ```typescript
 import type {
+  ValidationErrorCode,
   ValidationResult,
   CNPValidationResult,
   CUIValidationResult,

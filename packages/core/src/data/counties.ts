@@ -83,9 +83,7 @@ export function searchCounties(
   return list
     .filter(
       (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.auto.toLowerCase().includes(q) ||
-        c.code.includes(q)
+        c.name.toLowerCase().includes(q) || c.auto.toLowerCase().includes(q) || c.code.includes(q)
     )
     .slice(0, limit);
 }
