@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitepress';
 
+const base = '/carpat/';
+
 export default defineConfig({
   title: 'carpat',
   description: 'Romanian form inputs and validators for modern web applications',
-  base: '/carpat/',
+  base,
   head: [
     [
       'link',
@@ -12,6 +14,7 @@ export default defineConfig({
         href: 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600&display=swap',
       },
     ],
+    ['link', { rel: 'icon', href: `${base}favicon.svg`, type: 'image/svg+xml' }],
   ],
   themeConfig: {
     logo: '/logo.svg',

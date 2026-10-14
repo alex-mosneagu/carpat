@@ -390,49 +390,10 @@
   }
 }
 
-/* Demo / component styles — theme-aware for light + dark */
-.carpat-demo {
-  padding: 1.5rem 1.35rem 0.5rem;
-  margin: 1.5rem 0 2.5rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-}
-
-.carpat-demo > h2 {
-  margin: 0 0 1rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--vp-c-divider);
-  font-family: var(--vp-font-family-base);
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--vp-c-text-1);
-  line-height: 1.4;
-}
-
-.carpat-demo > h2:first-child {
-  border-top: none;
-  padding-top: 0;
-}
-
-.carpat-demo .demo-hint {
-  margin: -0.35rem 0 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--vp-c-text-2);
-}
-
-.carpat-demo .demo-hint code {
-  font-size: 0.85em;
-  color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-}
-
+/* Form control styles used by @carpat/* demos — follow VitePress theme tokens */
 .carpat-field {
   position: relative;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .carpat-label {
@@ -440,12 +401,13 @@
   margin-bottom: 0.45rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--vp-c-text-1);
+  color: var(--vp-c-text-1) !important;
 }
 
 .carpat-input,
 .carpat-select {
   width: 100%;
+  box-sizing: border-box;
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
@@ -461,6 +423,7 @@
 
 .carpat-input::placeholder {
   color: var(--vp-c-text-3);
+  opacity: 1;
 }
 
 .carpat-input:focus,
@@ -478,7 +441,7 @@
 }
 
 .carpat-error {
-  color: var(--vp-c-danger-1, #e54d2e);
+  color: var(--vp-c-danger-1, #ff6369);
   font-size: 0.875rem;
   margin-top: 0.35rem;
 }
@@ -495,6 +458,7 @@
 
 .carpat-info p {
   margin: 0.2rem 0;
+  color: var(--vp-c-text-2);
 }
 
 .carpat-dropdown {
@@ -502,7 +466,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: var(--vp-c-bg);
+  background: var(--vp-c-bg-elv, var(--vp-c-bg));
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   max-height: 220px;
@@ -510,13 +474,14 @@
   list-style: none;
   padding: 0.25rem 0;
   margin: 0.25rem 0 0;
-  box-shadow: var(--vp-shadow-2, 0 8px 24px rgba(0, 0, 0, 0.18));
+  box-shadow: var(--vp-shadow-2, 0 8px 24px rgba(0, 0, 0, 0.25));
   color: var(--vp-c-text-1);
 }
 
 .carpat-dropdown li {
   padding: 0.65rem 0.85rem;
   cursor: pointer;
+  color: var(--vp-c-text-1);
   transition: background 0.15s ease;
 }
 
@@ -525,13 +490,6 @@
 }
 
 .required {
-  color: var(--vp-c-danger-1, #e54d2e);
+  color: var(--vp-c-danger-1, #ff6369);
   margin-left: 0.25rem;
-}
-
-.demo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin: 0 0 1rem;
 }

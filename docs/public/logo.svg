@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="carpat">
+  <title>carpat</title>
+  <!-- Monochrome mark for VitePress nav (inherits currentColor). -->
   <path
-    d="M8 44 L20 22 L32 38 L44 16 L56 44"
-    stroke="currentColor"
-    stroke-width="4"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    fill="currentColor"
+    d="M8 46 L20 24 L29 38 L41 16 L56 46 Z"
   />
   <path
-    d="M8 48 H56"
+    fill="none"
     stroke="currentColor"
     stroke-width="3"
     stroke-linecap="round"
     opacity="0.45"
+    d="M12 52 H52"
   />
 </svg>
