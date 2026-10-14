@@ -1,0 +1,103 @@
+:root {
+  --vp-c-brand: #0066cc;
+  --vp-c-brand-light: #3385d6;
+  --vp-c-brand-lighter: #66a3e0;
+  --vp-c-brand-dark: #0052a3;
+  --vp-c-brand-darker: #003d7a;
+}
+
+.carpat-demo {
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.carpat-field {
+  margin-bottom: 1.5rem;
+}
+
+.carpat-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.carpat-input,
+.carpat-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #dfe4ea;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.carpat-input:focus,
+.carpat-select:focus {
+  outline: none;
+  border-color: var(--vp-c-brand);
+}
+
+.carpat-input:disabled,
+.carpat-select:disabled {
+  background: #f1f3f5;
+  cursor: not-allowed;
+}
+
+.carpat-error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.carpat-info {
+  color: #7f8c8d;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.carpat-info p {
+  margin: 0.25rem 0;
+}
+
+.carpat-dropdown {
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  border: 2px solid #dfe4ea;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carpat-dropdown li {
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.carpat-dropdown li:hover {
+  background: #f8f9fa;
+}
+
+.required {
+  color: #e74c3c;
+  margin-left: 0.25rem;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}

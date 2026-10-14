@@ -1,0 +1,32 @@
+{
+  "name": "@carpat/core",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Framework-agnostic Romanian validators, formatters and data",
+  "author": "Alex Mosneagu",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./data": {
+      "types": "./dist/data/index.d.ts",
+      "import": "./dist/data/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
