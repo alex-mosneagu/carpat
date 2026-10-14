@@ -28,13 +28,13 @@ pnpm add @carpat/core
 ```typescript
 import { validateCNP, validateIBAN, formatPhone } from '@carpat/core';
 
-const cnpResult = validateCNP('1990101123456');
+const cnpResult = validateCNP('1990101123450');
 if (cnpResult.valid) {
   console.log(cnpResult.data);
-  // { sex: 'M', birthDate: Date, county: 'Alba', countyCode: '01' }
+  // { sex: 'M', birthDate: Date, county: 'Cluj', countyCode: '12' }
 }
 
-const ibanResult = validateIBAN('RO49RNCB0000000000000000');
+const ibanResult = validateIBAN('RO90RNCB0000000000001234');
 console.log(ibanResult.bankName); // 'Banca Comercială Română (BCR)'
 
 const formatted = formatPhone('0712345678'); // '0712 345 678'

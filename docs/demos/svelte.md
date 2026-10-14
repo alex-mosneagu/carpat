@@ -73,9 +73,9 @@ pnpm add @carpat/core @carpat/svelte
 
 ## Test Values
 
-- **CNP**: `1990101123456` (valid male) or `2850623234567` (valid female)
+- **CNP**: `1990101123450` (male) or `2850623234566` (female)
 - **CUI**: `18547290` or `RO18547290`
-- **IBAN**: `RO49RNCB0000000000000000` (BCR) or `RO49BTRL01301202S50000XX` (Transilvania)
+- **IBAN**: `RO90RNCB0000000000001234` (BCR) or `RO36BTRL0130123456789012` (Transilvania)
 - **Phone**: `0712345678` (mobile) or `0212345678` (landline)
 
 ## Features

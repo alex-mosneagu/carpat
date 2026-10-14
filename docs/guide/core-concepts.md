@@ -7,7 +7,7 @@ All validators follow the same pattern:
 ```typescript
 import { validateCNP } from '@carpat/core';
 
-const result = validateCNP('1990101123456');
+const result = validateCNP('1990101123450');
 
 if (result.valid) {
   console.log('Valid!');
@@ -48,7 +48,7 @@ Formatters take raw input and return a formatted string:
 ```typescript
 import { formatCNP, formatIBAN, formatPhone } from '@carpat/core';
 
-formatCNP('1990101123456');
+formatCNP('1990101123450');
 // "1 99 01 01 12 345 6"
 
 formatIBAN('RO49AAAA1B31007593840000');

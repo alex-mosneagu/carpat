@@ -28,14 +28,14 @@ pnpm add @carpat/core
 ```typescript
 import { validateCNP, extractCNPData, formatCNP } from '@carpat/core';
 
-const result = validateCNP('1990101123456');
+const result = validateCNP('1990101123450');
 if (result.valid) {
   console.log(result.data);
   // { sex: 'M', birthDate: Date, county: 'Alba', countyCode: '01' }
 }
 
-const data = extractCNPData('1990101123456');
-const formatted = formatCNP('1990101123456'); // "1 99 01 01 12 345 6"
+const data = extractCNPData('1990101123450');
+const formatted = formatCNP('1990101123450'); // "1 99 01 01 12 345 0"
 ```
 
 ### CUI/CIF Validation

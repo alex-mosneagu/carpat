@@ -1,6 +1,13 @@
 <script setup>
 import { ref } from 'vue';
-import { CNPInput, CUIInput, IBANInput, PhoneInput, CountySelect, LocalitySelect } from '@carpat/vue';
+import {
+  CNPInput,
+  CUIInput,
+  IBANInput,
+  PhoneInput,
+  CountySelect,
+  LocalitySelect,
+} from '@carpat/vue';
 
 const cnp = ref('');
 const cui = ref('');
@@ -12,33 +19,29 @@ const locality = ref('');
 
 # Vue Demo
 
-Try the Vue components with live validation:
+Live validation with `@carpat/vue`. Blur a field to see errors; valid values can auto-format.
 
 <div class="carpat-demo">
 
-## CNP Input
+## CNP
 
-<CNPInput 
-  v-model="cnp" 
+<CNPInput
+  v-model="cnp"
   label="CNP (Cod Numeric Personal)"
   :show-info="true"
   :show-error="true"
   :required="true"
 />
 
-Try: `1990101123456` (valid male CNP) or `2850623234567` (valid female CNP)
+<p class="demo-hint">Try <code>1990101123450</code> (male) or <code>2850623234566</code> (female).</p>
 
-## CUI Input
+## CUI / CIF
 
-<CUIInput
-  v-model="cui"
-  label="CUI/CIF"
-  :include-prefix="true"
-/>
+<CUIInput v-model="cui" label="CUI/CIF" :include-prefix="true" />
 
-Try: `18547290` or `RO18547290`
+<p class="demo-hint">Try <code>18547290</code> or <code>RO18547290</code>.</p>
 
-## IBAN Input
+## IBAN
 
 <IBANInput
   v-model="iban"
@@ -47,9 +50,12 @@ Try: `18547290` or `RO18547290`
   :auto-format="true"
 />
 
-Try: `RO49RNCB0000000000000000` (BCR) or `RO49BTRL01301202S50000XX` (Banca Transilvania)
+<p class="demo-hint">
+  Try <code>RO90RNCB0000000000001234</code> (BCR) or
+  <code>RO36BTRL0130123456789012</code> (Banca Transilvania).
+</p>
 
-## Phone Input
+## Phone
 
 <PhoneInput
   v-model="phone"
@@ -58,18 +64,14 @@ Try: `RO49RNCB0000000000000000` (BCR) or `RO49BTRL01301202S50000XX` (Banca Trans
   :auto-format="true"
 />
 
-Try: `0712345678` (mobile) or `0212345678` (landline)
+<p class="demo-hint">Try <code>0712345678</code> (mobile) or <code>0212345678</code> (landline).</p>
 
-## County & Locality
+## County and locality
 
 <div class="demo-grid">
-  <CountySelect
-    v-model="county"
-    label="Județ"
-    :required="true"
-  />
+  <CountySelect v-model="county" label="Județ" :required="true" />
 
-<LocalitySelect
+  <LocalitySelect
     v-model="locality"
     :county-code="county"
     label="Localitate"
@@ -78,9 +80,11 @@ Try: `0712345678` (mobile) or `0212345678` (landline)
   />
 </div>
 
+<p class="demo-hint">Pick a județ first, then search a locality.</p>
+
 </div>
 
-## Source Code
+## Source
 
 ```vue
 <script setup>
@@ -104,23 +108,18 @@ const locality = ref('');
 
 <template>
   <CNPInput v-model="cnp" label="CNP" :show-info="true" />
-
   <CUIInput v-model="cui" label="CUI/CIF" />
-
   <IBANInput v-model="iban" label="IBAN" :show-bank-info="true" />
-
   <PhoneInput v-model="phone" label="Telefon" :show-type="true" />
-
   <CountySelect v-model="county" label="Județ" />
-
   <LocalitySelect v-model="locality" :county-code="county" label="Localitate" />
 </template>
 ```
 
-## Installation
+## Install
 
 ```bash
 pnpm add @carpat/core @carpat/vue
 ```
 
-See the [Vue API documentation](/api/vue) for all available props and events.
+See the [Vue API](/api/vue) for props and events.

@@ -32,7 +32,7 @@ interface CNPValidationResult extends ValidationResult {
 **Example:**
 
 ```typescript
-const result = validateCNP('1990101123456');
+const result = validateCNP('1990101123450');
 if (result.valid) {
   console.log(result.data.sex); // 'M'
   console.log(result.data.birthDate); // Date object
@@ -90,7 +90,7 @@ interface IBANValidationResult extends ValidationResult {
 **Example:**
 
 ```typescript
-const result = validateIBAN('RO49RNCB0000000000000000');
+const result = validateIBAN('RO90RNCB0000000000001234');
 console.log(result.bankCode); // 'RNCB'
 console.log(result.bankName); // 'Banca Comercială Română (BCR)'
 console.log(result.formatted); // 'RO49 RNCB 0000 0000 0000 0000'
@@ -165,7 +165,7 @@ function formatCNP(cnp: string): string;
 
 Formats as: `S YY MM DD JJ NNN C`
 
-Example: `1990101123456` → `1 99 01 01 12 345 6`
+Example: `1990101123450` → `1 99 01 01 12 345 0`
 
 ### formatCUI
 

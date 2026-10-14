@@ -390,99 +390,148 @@
   }
 }
 
-/* Demo / component styles used on other pages */
+/* Demo / component styles — theme-aware for light + dark */
 .carpat-demo {
-  padding: 2rem;
-  background: var(--carpat-fog);
-  border-radius: 8px;
-  margin: 2rem 0;
+  padding: 1.5rem 1.35rem 0.5rem;
+  margin: 1.5rem 0 2.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+}
+
+.carpat-demo > h2 {
+  margin: 0 0 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--vp-c-divider);
+  font-family: var(--vp-font-family-base);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+  line-height: 1.4;
+}
+
+.carpat-demo > h2:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.carpat-demo .demo-hint {
+  margin: -0.35rem 0 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+}
+
+.carpat-demo .demo-hint code {
+  font-size: 0.85em;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
 }
 
 .carpat-field {
-  margin-bottom: 1.5rem;
+  position: relative;
+  margin-bottom: 1.25rem;
 }
 
 .carpat-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
   font-weight: 600;
-  color: var(--carpat-ink);
+  font-size: 0.95rem;
+  color: var(--vp-c-text-1);
 }
 
 .carpat-input,
 .carpat-select {
   width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #c9d5ce;
-  border-radius: 6px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  line-height: 1.4;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
   font-family: inherit;
+}
+
+.carpat-input::placeholder {
+  color: var(--vp-c-text-3);
 }
 
 .carpat-input:focus,
 .carpat-select:focus {
   outline: none;
-  border-color: var(--carpat-moss);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
 .carpat-input:disabled,
 .carpat-select:disabled {
-  background: #eef3f0;
+  opacity: 0.65;
   cursor: not-allowed;
+  background: var(--vp-c-bg-soft);
 }
 
 .carpat-error {
-  color: #b42318;
+  color: var(--vp-c-danger-1, #e54d2e);
   font-size: 0.875rem;
-  margin-top: 0.25rem;
+  margin-top: 0.35rem;
 }
 
 .carpat-info {
-  color: var(--carpat-stone);
+  color: var(--vp-c-text-2);
   font-size: 0.875rem;
   margin-top: 0.5rem;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 4px;
+  padding: 0.65rem 0.75rem;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
 }
 
 .carpat-info p {
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
 }
 
 .carpat-dropdown {
   position: absolute;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  background: white;
-  border: 2px solid #c9d5ce;
-  border-radius: 6px;
-  max-height: 200px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  max-height: 220px;
   overflow-y: auto;
   list-style: none;
-  padding: 0;
-  margin: 0.25rem 0 0 0;
-  box-shadow: 0 4px 6px rgba(14, 28, 22, 0.1);
+  padding: 0.25rem 0;
+  margin: 0.25rem 0 0;
+  box-shadow: var(--vp-shadow-2, 0 8px 24px rgba(0, 0, 0, 0.18));
+  color: var(--vp-c-text-1);
 }
 
 .carpat-dropdown li {
-  padding: 0.75rem;
+  padding: 0.65rem 0.85rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s ease;
 }
 
 .carpat-dropdown li:hover {
-  background: var(--carpat-fog);
+  background: var(--vp-c-bg-soft);
 }
 
 .required {
-  color: #b42318;
+  color: var(--vp-c-danger-1, #e54d2e);
   margin-left: 0.25rem;
 }
 
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1rem;
 }
