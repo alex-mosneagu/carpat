@@ -154,6 +154,7 @@ Visit [https://alex-mosneagu.github.io/carpat/](https://alex-mosneagu.github.io/
 carpat/
 ├── packages/
 │   ├── core/        # Framework-agnostic validators and data
+│   ├── cli/         # Command-line interface
 │   ├── vue/         # Vue 3 components
 │   ├── react/       # React components
 │   └── svelte/      # Svelte components

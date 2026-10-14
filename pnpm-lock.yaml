@@ -82,6 +82,19 @@ importers:
         specifier: ^3.3.11
         version: 3.5.44(typescript@5.9.3)
 
+  packages/cli:
+    dependencies:
+      '@carpat/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@types/node':
+        specifier: ^20.10.0
+        version: 20.19.43
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+
   packages/core:
     devDependencies:
       typescript:
