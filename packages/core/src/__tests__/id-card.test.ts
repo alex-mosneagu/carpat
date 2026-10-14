@@ -77,4 +77,11 @@ describe('ID Card Validation', () => {
       expect(result.valid).toBe(true);
     });
   });
+
+  it('validates Bucharest series (RD, DP, DR, DT, DX)', () => {
+    const bucharest = ['RD', 'DP', 'DR', 'DT', 'DX'];
+    bucharest.forEach((series) => {
+      expect(validateIDCard(series, '123456').valid).toBe(true);
+    });
+  });
 });

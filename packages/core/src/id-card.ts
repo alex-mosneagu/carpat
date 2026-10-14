@@ -1,6 +1,7 @@
 import type { IDCardValidationResult } from './types.js';
 
-const VALID_SERIES = [
+/** Official / commonly issued Romanian CI series (județe, București, temporary). */
+export const ID_CARD_SERIES = [
   'AB',
   'AR',
   'AG',
@@ -42,19 +43,28 @@ const VALID_SERIES = [
   'VL',
   'VN',
   'VS',
+  // București
+  'RD',
+  'DP',
+  'DR',
+  'DT',
+  'DX',
+  // Temporary / special
   'RX',
   'RT',
   'RR',
   'RL',
   'RK',
   'RZ',
-];
+] as const;
+
+export type IDCardSeries = (typeof ID_CARD_SERIES)[number];
 
 export function validateIDCard(series: string, number: string): IDCardValidationResult {
   const cleanedSeries = series.toUpperCase().trim();
   const cleanedNumber = number.replace(/\s/g, '');
 
-  if (!VALID_SERIES.includes(cleanedSeries)) {
+  if (!(ID_CARD_SERIES as readonly string[]).includes(cleanedSeries)) {
     return { valid: false, error: 'Invalid ID card series' };
   }
 

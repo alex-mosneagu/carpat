@@ -5,6 +5,7 @@ import {
   CUIInput,
   IBANInput,
   PhoneInput,
+  IDCardInput,
   CountySelect,
   LocalitySelect,
 } from '@carpat/vue';
@@ -13,6 +14,8 @@ const cnp = ref('');
 const cui = ref('');
 const iban = ref('');
 const phone = ref('');
+const idSeries = ref('');
+const idNumber = ref('');
 const county = ref('');
 const locality = ref('');
 </script>
@@ -74,6 +77,24 @@ const locality = ref('');
         :auto-format="true"
       />
       <p class="hint">Try <code>0712345678</code> or <code>0212345678</code>.</p>
+    </section>
+
+    <section class="demo-block">
+      <header class="demo-block-head">
+        <h2>ID card</h2>
+        <p>Series and 6-digit number, including Bucharest series.</p>
+      </header>
+      <IDCardInput
+        v-model:series="idSeries"
+        v-model:number="idNumber"
+        label="Carte de identitate"
+        :show-info="true"
+        :required="true"
+      />
+      <p class="hint">
+        Try <code>CJ</code> + <code>123456</code>, or Bucharest <code>RD</code> +
+        <code>654321</code>.
+      </p>
     </section>
 
     <section class="demo-block">
