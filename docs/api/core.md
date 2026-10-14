@@ -13,7 +13,7 @@ function validateCNP(cnp: string): CNPValidationResult;
 
 interface CNPValidationResult extends ValidationResult {
   data?: {
-    sex: 'M' | 'F';
+    sex: 'M' | 'F' | null; // null for digit 9 (foreign citizen)
     birthDate: Date;
     county: string;
     countyCode: string;
@@ -24,9 +24,9 @@ interface CNPValidationResult extends ValidationResult {
 **Algorithm:**
 
 - 13 digits required
-- First digit encodes century and sex
+- First digit encodes century/sex (1–8) or foreign citizen (9, sex not encoded)
 - Digits 2-7 encode birth date (YYMMDD)
-- Digits 8-9 encode county
+- Digits 8-9 encode county (including historical București sectors 47–48; 52 is Giurgiu)
 - Last digit is mod-11 checksum with weights [2,7,9,1,4,6,3,5,8,2,7,9]
 
 **Example:**

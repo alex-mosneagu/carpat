@@ -4,6 +4,15 @@ import { invalid } from './messages.js';
 
 const CNP_WEIGHTS = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
 
+function centuryForResidentOrForeign(year: number): number {
+  return year < 50 ? 2000 + year : 1900 + year;
+}
+
+function sexFromDigit(sex: number): 'M' | 'F' | null {
+  if (sex === 9) return null; // foreign citizen — sex not encoded
+  return sex % 2 === 1 ? 'M' : 'F';
+}
+
 export function validateCNP(cnp: string): CNPValidationResult {
   const cleaned = cnp.replace(/\s/g, '');
 
@@ -19,7 +28,7 @@ export function validateCNP(cnp: string): CNPValidationResult {
   const countyCode = String(digits[7] * 10 + digits[8]).padStart(2, '0');
   const checksum = digits[12];
 
-  if (sex < 1 || sex > 8) {
+  if (sex < 1 || sex > 9) {
     return invalid('cnp.sex');
   }
 
@@ -30,10 +39,9 @@ export function validateCNP(cnp: string): CNPValidationResult {
     fullYear = 1800 + year;
   } else if (sex === 5 || sex === 6) {
     fullYear = 2000 + year;
-  } else if (sex === 7 || sex === 8) {
-    fullYear = year < 50 ? 2000 + year : 1900 + year;
   } else {
-    return invalid('cnp.sex');
+    // 7/8 residents, 9 foreign citizens
+    fullYear = centuryForResidentOrForeign(year);
   }
 
   if (month < 1 || month > 12) {
@@ -51,7 +59,7 @@ export function validateCNP(cnp: string): CNPValidationResult {
   }
 
   const countyData = COUNTIES.find((c) => c.code === countyCode);
-  if (!countyData && countyCode !== '52') {
+  if (!countyData) {
     return invalid('cnp.county');
   }
 
@@ -71,9 +79,9 @@ export function validateCNP(cnp: string): CNPValidationResult {
   return {
     valid: true,
     data: {
-      sex: sex % 2 === 1 ? 'M' : 'F',
+      sex: sexFromDigit(sex),
       birthDate,
-      county: countyData?.name || 'Sector București',
+      county: countyData.name,
       countyCode,
     },
   };

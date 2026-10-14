@@ -1,25 +1,29 @@
-# carpat 🇷🇴
+# carpat
 
-A comprehensive, framework-agnostic toolkit of Romanian form inputs, validators, formatters, and data for modern web applications.
+Framework-agnostic Romanian validators, formatters, and form inputs for Vue, React, and Svelte.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
+[![CI](https://github.com/alex-mosneagu/carpat/actions/workflows/ci.yml/badge.svg)](https://github.com/alex-mosneagu/carpat/actions/workflows/ci.yml)
+[![npm @carpat/core](https://img.shields.io/npm/v/@carpat/core.svg)](https://www.npmjs.com/package/@carpat/core)
+[![npm @carpat/cli](https://img.shields.io/npm/v/@carpat/cli.svg)](https://www.npmjs.com/package/@carpat/cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-0A66C2)](https://alex-mosneagu.github.io/carpat/)
 
 **Built by Alex Mosneagu with the help of AI tools.**
 
+Live demos and API docs: [alex-mosneagu.github.io/carpat](https://alex-mosneagu.github.io/carpat/)
+
 ## Features
 
-- ✅ **Complete validation** for CNP, CUI/CIF, IBAN, phone numbers, postal codes, and ID cards
-- 🎨 **Framework support** for Vue 3, React 18+, and Svelte 4 with ready-to-use components
-- 📦 **Zero dependencies** in core, fully tree-shakeable
-- 🇷🇴 **Romanian data** including counties (județe), localities (SIRUTA), and banks
-- 🔒 **Type-safe** with full TypeScript definitions
-- ♿ **Accessible** components following WCAG guidelines
-- 🎯 **Correct algorithms** with proper checksum validation
+- Validation for CNP, CUI/CIF, IBAN, phone numbers, postal codes, and ID cards
+- Ready-made inputs for Vue 3, React 18+, and Svelte 4
+- Zero runtime dependencies in `@carpat/core`, tree-shakeable
+- Bundled Romanian reference data: counties, localities, banks
+- Full TypeScript types
+- Unstyled components you can theme in your own app
 
 ## Quick Start
 
-### Core (Framework-agnostic)
+### Core (framework-agnostic)
 
 ```bash
 pnpm add @carpat/core
@@ -108,93 +112,78 @@ pnpm add @carpat/core @carpat/svelte
 <PhoneInput bind:value={phone} label="Telefon" />
 ```
 
+### CLI
+
+```bash
+pnpm add -g @carpat/cli
+carpat cnp 1990101010058
+```
+
 ## What's Included
 
 ### Validators
 
-- **CNP** (Cod Numeric Personal) - Personal identification with checksum, date, and county validation
-- **CUI/CIF** - Company identification with mod-11 checksum
-- **IBAN** - International bank account number with mod-97 checksum and Romanian bank lookup
-- **Phone numbers** - Mobile (07x) and landline (02x, 03x) validation
-- **Postal codes** - 6-digit Romanian postal codes
-- **ID cards** - Series and number validation for Romanian identity cards
-- **Addresses** - Street type normalization and address parsing
+- **CNP** — checksum, birth date, and county (including historical București sectors)
+- **CUI/CIF** — mod-11 checksum, optional `RO` prefix
+- **IBAN** — mod-97 checksum and Romanian bank lookup
+- **Phone** — mobile (`07x`) and landline (`02x`, `03x`)
+- **Postal codes** — 6-digit Romanian format
+- **ID cards** — series and number checks
+- **Addresses** — street-type normalization and light parsing
 
 ### Data
 
-- **Counties** - All 42 Romanian counties (județe) with codes and auto registration plates
-- **Localities** - SIRUTA database with major cities and towns
-- **Banks** - Romanian bank codes and names for IBAN validation
+- **Counties** — județe with CNP codes and auto plate codes
+- **Localities** — curated SIRUTA-oriented list of major cities and towns (not a full official dump)
+- **Banks** — common Romanian bank codes for IBAN display
 
-All data is sourced from official public registries and bundled locally for offline use.
+Data is bundled for offline use. Treat locality coverage as a practical subset, not a complete INSSE export.
 
 ### Components
 
-Ready-to-use, accessible, unstyled components for:
-
-- CNP input with data extraction display
-- CUI/CIF input with auto-formatting
-- IBAN input with bank lookup
-- Phone number input with type detection
-- County selector dropdown
-- Locality selector with search
+Unstyled inputs for CNP, CUI, IBAN, phone, county, and locality selection.
 
 ## Documentation
 
-Visit [https://alex-mosneagu.github.io/carpat/](https://alex-mosneagu.github.io/carpat/) for:
-
-- 📖 Complete API documentation
-- 🎮 Live interactive demos
-- 🎓 Usage guides and examples
-- 🎨 Styling examples
+- Site: [https://alex-mosneagu.github.io/carpat/](https://alex-mosneagu.github.io/carpat/)
+- Interactive demos for Vue, React, and Svelte
+- API reference for `@carpat/core` and the UI packages
 
 ## Monorepo Structure
 
 ```
 carpat/
 ├── packages/
-│   ├── core/        # Framework-agnostic validators and data
+│   ├── core/        # Validators and data
 │   ├── cli/         # Command-line interface
 │   ├── vue/         # Vue 3 components
 │   ├── react/       # React components
 │   └── svelte/      # Svelte components
-├── docs/            # VitePress documentation site
+├── docs/            # VitePress documentation
 └── .github/         # CI/CD workflows
 ```
 
 ## Development
 
 ```bash
-# Install dependencies
 pnpm install
-
-# Run tests
 pnpm test
-
-# Build all packages
+pnpm test:coverage
 pnpm build
-
-# Start docs dev server
 pnpm docs:dev
-
-# Lint
 pnpm lint
-
-# Type check
 pnpm typecheck
 ```
 
 ## Data Sources
 
-- **SIRUTA**: Official locality registry from the Romanian National Institute of Statistics (INSSE)
-- **Counties**: Official Romanian administrative codes
-- **Banks**: Publicly available Romanian bank codes for IBAN validation
-
-All data is properly documented with sources and licenses where applicable.
+- **Counties / CNP codes** — Romanian administrative and CNP county codes (including historical București sectors 7–8)
+- **Localities** — curated subset inspired by SIRUTA naming/codes; expand as needed for production coverage
+- **Banks** — publicly documented Romanian bank codes used in IBAN
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome — open a pull request against `main`.
 
 ## License
 
@@ -204,4 +193,4 @@ See [LICENSE](./LICENSE) for details.
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md) for planned features and improvements.
+See [ROADMAP.md](./ROADMAP.md) for planned features.

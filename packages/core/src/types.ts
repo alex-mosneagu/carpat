@@ -28,7 +28,8 @@ export interface ValidationResult {
 
 export interface CNPValidationResult extends ValidationResult {
   data?: {
-    sex: 'M' | 'F';
+    /** `null` when the sex digit is 9 (foreign citizen — sex not encoded). */
+    sex: 'M' | 'F' | null;
     birthDate: Date;
     county: string;
     countyCode: string;
