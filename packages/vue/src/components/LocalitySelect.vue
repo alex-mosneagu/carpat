@@ -4,51 +4,72 @@
       {{ label }}
       <span v-if="required" class="required">*</span>
     </label>
-    <input
-      v-if="searchable"
-      :id="inputId"
-      v-model="searchQuery"
-      type="text"
-      :placeholder="placeholder"
-      :disabled="disabled || (!countyCode && requireCounty)"
-      :class="inputClass"
-      @input="onSearch"
-      @focus="showDropdown = true"
-      @blur="onBlur"
-    />
-    <select
-      v-else
-      :id="inputId"
-      v-model="localValue"
-      :disabled="disabled || (!countyCode && requireCounty)"
-      :class="inputClass"
-      @change="onChange"
-    >
-      <option value="">{{ placeholder }}</option>
-      <option
-        v-for="locality in filteredLocalities"
-        :key="locality.siruta"
-        :value="locality.siruta"
+    <div class="carpat-combobox">
+      <input
+        :id="inputId"
+        v-model="searchQuery"
+        type="text"
+        role="combobox"
+        :aria-expanded="showDropdown"
+        aria-autocomplete="list"
+        :aria-controls="listboxId"
+        :placeholder="effectivePlaceholder"
+        :disabled="isDisabled"
+        :class="inputClass"
+        autocomplete="off"
+        @input="onSearch"
+        @focus="openDropdown"
+        @keydown="onKeydown"
+        @blur="onBlur"
+      />
+      <button
+        v-if="localValue && !isDisabled"
+        type="button"
+        class="carpat-combobox-clear"
+        aria-label="Șterge localitatea"
+        tabindex="-1"
+        @mousedown.prevent="clear"
       >
-        {{ locality.name }} ({{ locality.type }})
-      </option>
-    </select>
-    <ul v-if="searchable && showDropdown && filteredLocalities.length > 0" :class="dropdownClass">
-      <li
-        v-for="locality in filteredLocalities"
-        :key="locality.siruta"
-        @mousedown="selectLocality(locality.siruta, locality.name)"
+        ×
+      </button>
+      <ul
+        v-if="showDropdown && !isDisabled && options.length > 0"
+        :id="listboxId"
+        role="listbox"
+        :class="dropdownClass"
       >
-        {{ locality.name }} ({{ locality.type }})
-      </li>
-    </ul>
+        <li
+          v-for="(locality, index) in options"
+          :key="locality.siruta"
+          role="option"
+          :aria-selected="locality.siruta === localValue"
+          :class="{
+            'is-active': index === activeIndex,
+            'is-selected': locality.siruta === localValue,
+          }"
+          @mousedown.prevent="selectLocality(locality)"
+          @mouseenter="activeIndex = index"
+        >
+          <span class="carpat-option-title">{{ locality.name }}</span>
+          <span class="carpat-option-meta">{{ locality.type }}</span>
+        </li>
+      </ul>
+      <p v-else-if="showDropdown && !isDisabled && isFiltering" class="carpat-empty">
+        Nicio localitate găsită
+      </p>
+    </div>
     <p v-if="error && showError" :class="errorClass">{{ error }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { getLocalitiesByCounty, searchLocalities } from '@carpat/core/data';
+import {
+  getLocalitiesByCounty,
+  getLocalityBySiruta,
+  searchLocalities,
+} from '@carpat/core/data';
+import type { Locality } from '@carpat/core';
 
 export interface LocalitySelectProps {
   modelValue?: string;
@@ -58,7 +79,6 @@ export interface LocalitySelectProps {
   disabled?: boolean;
   required?: boolean;
   requireCounty?: boolean;
-  searchable?: boolean;
   showError?: boolean;
   containerClass?: string;
   labelClass?: string;
@@ -69,9 +89,8 @@ export interface LocalitySelectProps {
 
 const props = withDefaults(defineProps<LocalitySelectProps>(), {
   modelValue: '',
-  placeholder: 'Selectează localitatea',
+  placeholder: 'Caută localitatea…',
   requireCounty: true,
-  searchable: true,
   showError: true,
   containerClass: 'carpat-field',
   labelClass: 'carpat-label',
@@ -87,32 +106,54 @@ const emit = defineEmits<{
 const localValue = ref(props.modelValue);
 const searchQuery = ref('');
 const showDropdown = ref(false);
-const inputId = computed(() => `locality-select-${Math.random().toString(36).substr(2, 9)}`);
+const activeIndex = ref(0);
+const uid = Math.random().toString(36).slice(2, 9);
+const inputId = `locality-select-${uid}`;
+const listboxId = `locality-list-${uid}`;
 
-const filteredLocalities = computed(() => {
-  if (props.searchable && searchQuery.value.length > 0) {
+const isDisabled = computed(
+  () => props.disabled || (props.requireCounty && !props.countyCode)
+);
+
+const effectivePlaceholder = computed(() => {
+  if (props.requireCounty && !props.countyCode) return 'Selectează mai întâi județul';
+  return props.placeholder;
+});
+
+function labelFor(siruta: string) {
+  return getLocalityBySiruta(siruta)?.name ?? '';
+}
+
+const selectedLabel = computed(() => labelFor(localValue.value));
+
+const isFiltering = computed(() => {
+  const q = searchQuery.value.trim();
+  return q.length > 0 && q !== selectedLabel.value;
+});
+
+const options = computed(() => {
+  if (!props.countyCode && props.requireCounty) return [];
+  if (isFiltering.value) {
     return searchLocalities(searchQuery.value, props.countyCode);
-  } else if (props.countyCode) {
-    return getLocalitiesByCounty(props.countyCode);
   }
-  return [];
+  return props.countyCode ? getLocalitiesByCounty(props.countyCode) : [];
 });
 
 const error = computed(() => {
-  if (props.required && !localValue.value) {
-    return 'Localitatea este obligatorie';
-  }
-  if (props.requireCounty && !props.countyCode) {
-    return 'Selectați mai întâi județul';
-  }
+  if (props.requireCounty && !props.countyCode) return 'Selectați mai întâi județul';
+  if (props.required && !localValue.value) return 'Localitatea este obligatorie';
   return '';
 });
 
 watch(
   () => props.modelValue,
-  (newValue) => {
-    localValue.value = newValue;
-  }
+  (siruta) => {
+    localValue.value = siruta;
+    if (!showDropdown.value) {
+      searchQuery.value = labelFor(siruta);
+    }
+  },
+  { immediate: true }
 );
 
 watch(
@@ -120,28 +161,64 @@ watch(
   () => {
     localValue.value = '';
     searchQuery.value = '';
+    showDropdown.value = false;
     emit('update:modelValue', '');
   }
 );
 
 const onSearch = () => {
+  if (isDisabled.value) return;
   showDropdown.value = true;
+  activeIndex.value = 0;
+  if (localValue.value && searchQuery.value !== selectedLabel.value) {
+    localValue.value = '';
+    emit('update:modelValue', '');
+  }
 };
 
-const selectLocality = (siruta: string, name: string) => {
-  localValue.value = siruta;
-  searchQuery.value = name;
+const openDropdown = () => {
+  if (isDisabled.value) return;
+  showDropdown.value = true;
+  activeIndex.value = 0;
+};
+
+const selectLocality = (locality: Locality) => {
+  localValue.value = locality.siruta;
+  searchQuery.value = locality.name;
   showDropdown.value = false;
-  emit('update:modelValue', siruta);
+  emit('update:modelValue', locality.siruta);
 };
 
-const onChange = () => {
-  emit('update:modelValue', localValue.value);
+const clear = () => {
+  localValue.value = '';
+  searchQuery.value = '';
+  showDropdown.value = true;
+  activeIndex.value = 0;
+  emit('update:modelValue', '');
+};
+
+const onKeydown = (e: KeyboardEvent) => {
+  if (isDisabled.value) return;
+  const list = options.value;
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    showDropdown.value = true;
+    activeIndex.value = Math.min(activeIndex.value + 1, Math.max(list.length - 1, 0));
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    activeIndex.value = Math.max(activeIndex.value - 1, 0);
+  } else if (e.key === 'Enter' && showDropdown.value && list[activeIndex.value]) {
+    e.preventDefault();
+    selectLocality(list[activeIndex.value]);
+  } else if (e.key === 'Escape') {
+    showDropdown.value = false;
+  }
 };
 
 const onBlur = () => {
   setTimeout(() => {
     showDropdown.value = false;
-  }, 200);
+    searchQuery.value = labelFor(localValue.value);
+  }, 150);
 };
 </script>

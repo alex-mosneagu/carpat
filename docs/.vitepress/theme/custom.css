@@ -31,6 +31,62 @@
   margin-bottom: 1rem;
 }
 
+.carpat-combobox {
+  position: relative;
+}
+
+.carpat-combobox .carpat-input {
+  padding-right: 2.25rem;
+}
+
+.carpat-combobox-clear {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.45rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--vp-c-text-2);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carpat-combobox-clear:hover {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+}
+
+.carpat-empty {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin: 0.25rem 0 0;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-elv, var(--vp-c-bg));
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+}
+
+.carpat-option-title {
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+.carpat-option-meta {
+  margin-left: auto;
+  padding-left: 0.75rem;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
 .carpat-label {
   display: block;
   margin-bottom: 0.45rem;
@@ -104,24 +160,34 @@
   background: var(--vp-c-bg-elv, var(--vp-c-bg));
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  max-height: 220px;
+  max-height: 240px;
   overflow-y: auto;
   list-style: none;
-  padding: 0.25rem 0;
+  padding: 0.3rem;
   margin: 0.25rem 0 0;
   box-shadow: var(--vp-shadow-2, 0 8px 24px rgba(0, 0, 0, 0.25));
   color: var(--vp-c-text-1);
 }
 
 .carpat-dropdown li {
-  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 6px;
   cursor: pointer;
   color: var(--vp-c-text-1);
   transition: background 0.15s ease;
 }
 
-.carpat-dropdown li:hover {
+.carpat-dropdown li:hover,
+.carpat-dropdown li.is-active {
   background: var(--vp-c-bg-soft);
+}
+
+.carpat-dropdown li.is-selected .carpat-option-title {
+  color: var(--vp-c-brand-1);
 }
 
 .required {

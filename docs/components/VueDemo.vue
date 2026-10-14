@@ -79,7 +79,7 @@ const locality = ref('');
     <section class="demo-block">
       <header class="demo-block-head">
         <h2>County and locality</h2>
-        <p>Pick a județ, then search a locality.</p>
+        <p>Search a județ, then a locality in that county.</p>
       </header>
       <div class="demo-grid">
         <CountySelect v-model="county" label="Județ" :required="true" />
@@ -87,7 +87,6 @@ const locality = ref('');
           v-model="locality"
           :county-code="county"
           label="Localitate"
-          :searchable="true"
           :require-county="true"
         />
       </div>

@@ -51,6 +51,9 @@ export const COUNTIES: County[] = [
   { code: '52', name: 'Giurgiu', auto: 'GR' },
 ];
 
+/** Bucharest sector codes — usually omitted from județ pickers. */
+const SECTOR_CODES = new Set(['41', '42', '43', '44', '45', '46']);
+
 export function getCountyByCode(code: string): County | undefined {
   return COUNTIES.find((c) => c.code === code);
 }
@@ -62,4 +65,27 @@ export function getCountyByAuto(auto: string): County | undefined {
 export function getCountyByName(name: string): County | undefined {
   const normalized = name.toLowerCase();
   return COUNTIES.find((c) => c.name.toLowerCase() === normalized);
+}
+
+export function listCounties(options: { includeSectors?: boolean } = {}): County[] {
+  if (options.includeSectors) return COUNTIES;
+  return COUNTIES.filter((c) => !SECTOR_CODES.has(c.code));
+}
+
+export function searchCounties(
+  query: string,
+  options: { includeSectors?: boolean; limit?: number } = {}
+): County[] {
+  const limit = options.limit ?? 50;
+  const list = listCounties({ includeSectors: options.includeSectors });
+  const q = query.trim().toLowerCase();
+  if (!q) return list.slice(0, limit);
+  return list
+    .filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        c.auto.toLowerCase().includes(q) ||
+        c.code.includes(q)
+    )
+    .slice(0, limit);
 }

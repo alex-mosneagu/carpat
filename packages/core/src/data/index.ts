@@ -1,4 +1,11 @@
-export { COUNTIES, getCountyByCode, getCountyByAuto, getCountyByName } from './counties.js';
+export {
+  COUNTIES,
+  getCountyByCode,
+  getCountyByAuto,
+  getCountyByName,
+  listCounties,
+  searchCounties,
+} from './counties.js';
 export { BANKS, getBankByCode, getBankByName } from './banks.js';
 export {
   LOCALITIES,
