@@ -1,0 +1,30 @@
+{
+  "name": "carpat",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r --filter='!docs' run build",
+    "dev": "pnpm -r --parallel run dev",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "pnpm -r run typecheck",
+    "docs:dev": "pnpm --filter docs run dev",
+    "docs:build": "pnpm --filter docs run build",
+    "docs:preview": "pnpm --filter docs run preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.5",
+    "vitest": "^1.0.4"
+  },
+  "packageManager": "pnpm@8.12.0"
+}
