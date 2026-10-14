@@ -4,8 +4,18 @@ export default defineConfig({
   title: 'carpat',
   description: 'Romanian form inputs and validators for modern web applications',
   base: '/carpat/',
+  head: [
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Sora:wght@400;500;600&display=swap',
+      },
+    ],
+  ],
   themeConfig: {
     logo: '/logo.svg',
+    siteTitle: 'carpat',
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'API', link: '/api/core' },
