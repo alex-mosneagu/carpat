@@ -1,6 +1,6 @@
 {
   "name": "@carpat/vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Vue 3 components for Romanian form inputs",
   "author": "Alex Mosneagu",
@@ -15,10 +15,11 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "vite build && cp src/public-types.d.ts dist/index.d.ts",
     "dev": "vite build --watch",
     "typecheck": "tsc --noEmit"
   },
@@ -33,5 +34,24 @@
     "typescript": "^5.3.3",
     "vite": "^5.0.5",
     "vue": "^3.3.11"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-mosneagu/carpat.git",
+    "directory": "packages/vue"
+  },
+  "bugs": {
+    "url": "https://github.com/alex-mosneagu/carpat/issues"
+  },
+  "homepage": "https://alex-mosneagu.github.io/carpat/",
+  "keywords": [
+    "romania",
+    "vue",
+    "cnp",
+    "forms",
+    "validation"
+  ]
 }

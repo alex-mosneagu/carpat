@@ -13,6 +13,9 @@ pnpm add @carpat/core
 pnpm add @carpat/vue
 pnpm add @carpat/react
 pnpm add @carpat/svelte
+
+# Optional CLI
+pnpm add -g @carpat/cli
 ```
 
 ```bash [npm]
@@ -22,6 +25,9 @@ npm install @carpat/core
 npm install @carpat/vue
 npm install @carpat/react
 npm install @carpat/svelte
+
+# Optional CLI
+npm install -g @carpat/cli
 ```
 
 ```bash [yarn]
@@ -31,6 +37,9 @@ yarn add @carpat/core
 yarn add @carpat/vue
 yarn add @carpat/react
 yarn add @carpat/svelte
+
+# Optional CLI
+yarn global add @carpat/cli
 ```
 
 :::
@@ -73,6 +82,18 @@ pnpm add @carpat/core @carpat/svelte
 
 **Requirements:** Svelte 4+
 
+## CLI
+
+Validate from the terminal with `@carpat/cli` (currently **0.1.1**):
+
+```bash
+pnpm add -g @carpat/cli
+carpat cnp 1990101123450
+carpat --version
+```
+
+See the [CLI reference](/api/cli) for all commands.
+
 ## TypeScript
 
 All packages include TypeScript definitions. No additional `@types/*` packages needed.
@@ -90,4 +111,4 @@ All packages include TypeScript definitions. No additional `@types/*` packages n
 
 - Learn about [Core Concepts](/guide/core-concepts)
 - Try the [Vue Demo](/demos/vue)
-- Check the [API Reference](/api/core)
+- Check the [API Reference](/api/core) or [CLI](/api/cli)

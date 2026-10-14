@@ -34,6 +34,10 @@ React 18+ components with hooks and TypeScript.
 
 Svelte 4 components with full reactivity.
 
+### @carpat/cli
+
+Terminal CLI (`carpat`) for the same validators — useful in scripts and CI. See the [CLI docs](/api/cli) (v0.1.1).
+
 ## Philosophy
 
 1. **All logic in core** - Framework packages are thin wrappers around core validators

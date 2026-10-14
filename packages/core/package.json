@@ -1,6 +1,6 @@
 {
   "name": "@carpat/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Framework-agnostic Romanian validators, formatters and data",
   "author": "Alex Mosneagu",
@@ -19,7 +19,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsc",
@@ -28,5 +29,26 @@
   },
   "devDependencies": {
     "typescript": "^5.3.3"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-mosneagu/carpat.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/alex-mosneagu/carpat/issues"
+  },
+  "homepage": "https://alex-mosneagu.github.io/carpat/",
+  "keywords": [
+    "romania",
+    "cnp",
+    "cui",
+    "iban",
+    "validation",
+    "typescript"
+  ],
+  "sideEffects": false
 }

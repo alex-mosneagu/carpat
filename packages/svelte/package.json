@@ -1,6 +1,6 @@
 {
   "name": "@carpat/svelte",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Svelte components for Romanian form inputs",
   "author": "Alex Mosneagu",
@@ -14,8 +14,7 @@
   },
   "files": [
     "dist",
-    "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
+    "README.md"
   ],
   "scripts": {
     "build": "svelte-package -o dist",
@@ -33,5 +32,24 @@
     "svelte": "^4.2.8",
     "typescript": "^5.3.3"
   },
-  "svelte": "./dist/index.js"
+  "svelte": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-mosneagu/carpat.git",
+    "directory": "packages/svelte"
+  },
+  "bugs": {
+    "url": "https://github.com/alex-mosneagu/carpat/issues"
+  },
+  "homepage": "https://alex-mosneagu.github.io/carpat/",
+  "keywords": [
+    "romania",
+    "svelte",
+    "cnp",
+    "forms",
+    "validation"
+  ]
 }

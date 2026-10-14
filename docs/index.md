@@ -45,6 +45,8 @@ formatPhone('+40 712 345 678'); // '0712 345 678'
 pnpm add @carpat/core
 # optional UI
 pnpm add @carpat/vue    # or @carpat/react / @carpat/svelte
+# optional CLI
+pnpm add -g @carpat/cli
 ```
 
-See the [guide](/guide/getting-started) or try the [Vue demo](/demos/vue).
+See the [guide](/guide/getting-started), [CLI](/api/cli), or try the [Vue demo](/demos/vue).

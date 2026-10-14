@@ -2,6 +2,8 @@
 
 Command-line interface for Romanian validators from `@carpat/core`.
 
+**Version:** `0.1.1` · [Docs](https://alex-mosneagu.github.io/carpat/api/cli.html)
+
 ## Install
 
 ```bash

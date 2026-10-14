@@ -22,6 +22,7 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'API', link: '/api/core' },
+      { text: 'CLI', link: '/api/cli' },
       { text: 'Demos', link: '/demos/vue' },
     ],
     sidebar: [
@@ -37,6 +38,7 @@ export default defineConfig({
         text: 'API Reference',
         items: [
           { text: 'Core', link: '/api/core' },
+          { text: 'CLI', link: '/api/cli' },
           { text: 'Vue', link: '/api/vue' },
           { text: 'React', link: '/api/react' },
           { text: 'Svelte', link: '/api/svelte' },

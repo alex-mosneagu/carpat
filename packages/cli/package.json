@@ -1,6 +1,6 @@
 {
   "name": "@carpat/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "CLI for Romanian validators (CNP, CUI, IBAN, phone, ID card, and more)",
   "author": "Alex Mosneagu",
@@ -38,8 +38,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/alex-mosneagu/carpat.git",
+    "url": "git+https://github.com/alex-mosneagu/carpat.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://alex-mosneagu.github.io/carpat/"
+  "homepage": "https://alex-mosneagu.github.io/carpat/",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/alex-mosneagu/carpat/issues"
+  }
 }
