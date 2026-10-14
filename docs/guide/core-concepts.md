@@ -33,7 +33,7 @@ Some validators extend this with additional data:
 ```typescript
 interface CNPValidationResult extends ValidationResult {
   data?: {
-    sex: 'M' | 'F';
+    sex: 'M' | 'F' | null; // null when sex digit is 9
     birthDate: Date;
     county: string;
     countyCode: string;

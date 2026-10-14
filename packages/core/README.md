@@ -91,9 +91,9 @@ const results = searchLocalities('Cluj', '12');
 
 ## Data Sources
 
-- **SIRUTA**: Locality data is based on the official SIRUTA registry maintained by the Romanian National Institute of Statistics (INSSE). The data is bundled locally for offline use and includes major cities and towns.
-- **Counties**: Official Romanian county codes and names.
-- **Banks**: Romanian bank codes for IBAN validation, sourced from publicly available banking information.
+- **Localities**: Curated SIRUTA-oriented subset of major cities and towns (not a full INSSE dump).
+- **Counties**: Romanian administrative / CNP county codes (including historical București sectors 7–8).
+- **Banks**: Commonly documented Romanian bank codes for IBAN display.
 
 ## Tree-shaking
 

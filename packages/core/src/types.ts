@@ -5,7 +5,7 @@ export interface ValidationResult {
 
 export interface CNPValidationResult extends ValidationResult {
   data?: {
-    sex: 'M' | 'F';
+    sex: 'M' | 'F' | null;
     birthDate: Date;
     county: string;
     countyCode: string;

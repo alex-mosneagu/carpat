@@ -17,7 +17,16 @@
     />
     <p v-if="error && showError" :class="errorClass">{{ error }}</p>
     <div v-if="result.valid && result.data && showInfo" :class="infoClass">
-      <p>Sex: {{ result.data.sex === 'M' ? 'Masculin' : 'Feminin' }}</p>
+      <p>
+        Sex:
+        {{
+          result.data.sex === 'M'
+            ? 'Masculin'
+            : result.data.sex === 'F'
+              ? 'Feminin'
+              : 'Nespecificat'
+        }}
+      </p>
       <p>Data nașterii: {{ formatDate(result.data.birthDate) }}</p>
       <p>Județ: {{ result.data.county }}</p>
     </div>

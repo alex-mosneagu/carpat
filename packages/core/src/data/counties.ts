@@ -47,12 +47,14 @@ export const COUNTIES: County[] = [
   { code: '44', name: 'București - Sector 4', auto: 'B' },
   { code: '45', name: 'București - Sector 5', auto: 'B' },
   { code: '46', name: 'București - Sector 6', auto: 'B' },
+  { code: '47', name: 'București - Sector 7', auto: 'B' },
+  { code: '48', name: 'București - Sector 8', auto: 'B' },
   { code: '51', name: 'Călărași', auto: 'CL' },
   { code: '52', name: 'Giurgiu', auto: 'GR' },
 ];
 
 /** Bucharest sector codes — usually omitted from județ pickers. */
-const SECTOR_CODES = new Set(['41', '42', '43', '44', '45', '46']);
+const SECTOR_CODES = new Set(['41', '42', '43', '44', '45', '46', '47', '48']);
 
 export function getCountyByCode(code: string): County | undefined {
   return COUNTIES.find((c) => c.code === code);
@@ -83,9 +85,7 @@ export function searchCounties(
   return list
     .filter(
       (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.auto.toLowerCase().includes(q) ||
-        c.code.includes(q)
+        c.name.toLowerCase().includes(q) || c.auto.toLowerCase().includes(q) || c.code.includes(q)
     )
     .slice(0, limit);
 }

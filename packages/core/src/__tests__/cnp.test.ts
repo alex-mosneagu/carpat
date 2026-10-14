@@ -70,9 +70,35 @@ describe('CNP Validation', () => {
     expect(result.data?.birthDate.getDate()).toBe(29);
   });
 
-  it('validates București counties (40-46, 52)', () => {
+  it('validates București sector codes (40-46)', () => {
     const result = validateCNP('1990101400059');
     expect(result.valid).toBe(true);
+    expect(result.data?.county).toBe('București');
+  });
+
+  it('maps county code 52 to Giurgiu, not București', () => {
+    const result = validateCNP('1990101520058');
+    expect(result.valid).toBe(true);
+    expect(result.data?.countyCode).toBe('52');
+    expect(result.data?.county).toBe('Giurgiu');
+  });
+
+  it('accepts historical București sectors 7 and 8 (47, 48)', () => {
+    expect(validateCNP('1990101470051')).toMatchObject({
+      valid: true,
+      data: { countyCode: '47', county: 'București - Sector 7' },
+    });
+    expect(validateCNP('1990101480057')).toMatchObject({
+      valid: true,
+      data: { countyCode: '48', county: 'București - Sector 8' },
+    });
+  });
+
+  it('accepts sex digit 9 for foreign citizens without encoded sex', () => {
+    const result = validateCNP('9900101010059');
+    expect(result.valid).toBe(true);
+    expect(result.data?.sex).toBeNull();
+    expect(result.data?.birthDate.getFullYear()).toBe(1990);
   });
 
   it('extracts CNP data correctly', () => {

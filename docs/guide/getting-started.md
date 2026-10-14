@@ -42,10 +42,9 @@ Terminal CLI (`carpat`) for the same validators — useful in scripts and CI. Se
 
 1. **All logic in core** - Framework packages are thin wrappers around core validators
 2. **Zero runtime dependencies** - Core has no dependencies for minimal bundle size
-3. **Offline-first** - All data (SIRUTA, banks, counties) bundled locally
+3. **Offline-first** - Counties, banks, and a curated locality subset are bundled locally
 4. **Type-safe** - Full TypeScript support throughout
-5. **Accessible** - Components follow WCAG guidelines
-6. **Unstyled by default** - Bring your own styles or design system
+5. **Unstyled by default** - Bring your own styles or design system
 
 ## Next Steps
 
